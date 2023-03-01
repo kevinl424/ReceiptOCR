@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Receipt OCR</title>
+        <script>
+            var url = "";
+            var loadFile = function(event) { //initialized beforehand, hoisting
+                var image = document.getElementById('output');
+                url = URL.createObjectURL(event.target.files[0]);
+                image.src = url;
+            };
+
+            var getNames = function() {
+                var num = document.getElementById('number');
+                num = num.value
+                const location = document.getElementById('people')
+                let htmlString = "";
+                
+                location.innerHTML = ""
+
+                for (let i = 0; i < num; i++) {
+                    htmlString += `<label for="p${i + 1}name">Person ${i + 1} name:</label> <input type="text" id="p${i + 1}name" name="p${i + 1}name"> <br>`
+                }
+                location.innerHTML = htmlString;
+
+            }
+
+        </script>
+
+    </head>
+    <body>
+        <h1>Welcome to Receipt OCR</h1>
+        <label for="target">Select Receipt:</label>
+        <input type="file"  accept="image/*" name="image" id="file"  onchange="loadFile(event)">
+        <p><img id="output" width="500" /></p>
+        
+        <label for="number">Number of people to split between:</label>
+        <select name="number" id="number" onchange="getNames()">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+
+        <form id="people">
+            <label for="p1name">Person 1 name:</label>
+            <input type="text" id="p1name" name="p1name">
+        </form>
+
+        <p id="splitter">
+            <a href="/results/" target="_self"><button type="button">Crunch</button></a>
+        </p>
+
+
+    </body>
+</html>

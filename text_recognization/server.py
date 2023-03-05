@@ -1,6 +1,7 @@
-from flask import Flask, render_template
-from flask import request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for
+from werkzeug.utils import secure_filename
 import textrec
+
 app = Flask(__name__)
 
 @app.route('/', methods = ["get"])

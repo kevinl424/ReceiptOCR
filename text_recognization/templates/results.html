@@ -2,10 +2,16 @@
 <html lang="en">
 <html>
     <head>
-        <title>Hello!</title>
+        <title>Receipt Results</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>
+            Splitting the bill for:
+            {% for n in names%}
+                <h1>{{n}}</h1>
+            {% endfor %}
+
+        </h1>
         
         {% for r in result %}
             <div class="item">

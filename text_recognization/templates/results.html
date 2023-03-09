@@ -3,10 +3,13 @@
 <html>
     <head>
         <title>Receipt Results</title>
+        <!-- for flask app only -->
+        <!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='style.css') }}"> -->
+        <link rel="stylesheet" href="temp.css">
     </head>
     <body>
         <h1>
-            Splitting the bill for:
+            <!-- Splitting the bill for:
             {% for n in names%}
                 <h1>{{n}}</h1>
             {% endfor %}
@@ -15,9 +18,34 @@
         
         {% for r in results %}
         
-            <h3>{{r}}</h3>
+            <h3>{{r}}: {{results[r]}}</h3>
 
-        {% endfor %}
+        {% endfor %} -->
+
+        <div class="flex-container">
+            <h3>5 Gallons of Milk</h3>
+            <h3>$5.99</h3>
+            <div class="flex-child">
+                <div class="box">
+                    <input type="checkbox" id="p1", name="p1", value="Kevin">
+                    <span class="check"></span>
+                    <label for="p1">Kevin</label>
+                </div>
+                 <div class="box">
+                    <input type="checkbox" id="p2", name="p2", value="John">
+                    <span class="check"></span>
+                    <label for="p2">John</label>
+                </div>
+                <div class="box">
+                    <input type="checkbox" id="p3", name="p3", value="Peter">
+                    <span class="check"></span>
+                    <label for="p3">Peter</label>
+             
+                </div>
+            </div>
+            
+            
+        </div>
 
     </body>
 </html>

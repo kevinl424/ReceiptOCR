@@ -4,48 +4,30 @@
     <head>
         <title>Receipt Results</title>
         <!-- for flask app only -->
-        <!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='style.css') }}"> -->
-        <link rel="stylesheet" href="temp.css">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='style.css') }}">
+{#        <link rel="stylesheet" href="temp.css">#}
     </head>
     <body>
-        <h1>
-            <!-- Splitting the bill for:
-            {% for n in names%}
-                <h1>{{n}}</h1>
-            {% endfor %}
+        <form class="submit-splits" action="{{ url_for('/results/') }}" onsubmit="calcCosts({{ results|length }}, {{ names|length }}, {{ results|tojson }})" method="POST">
+            {%  for r in results %}
+            <div class="flex-container">
+                <h3>{{ r }}</h3>
+                <h3>{{ results[r] }}</h3>
+                <div class="flex-child">
+                    {% for n in names %}
+                        <div class="box">
+                            <input type="checkbox" id="p{{ loop.index|string + r }}", name="p{{ loop.index|string + r }}">
+                            <span class="check"></span>
+                            <label class="name" for="p{{ loop.index|string + r }}">{{ n }}</label>
+                        </div>
+                    {% endfor %}
 
-        </h1>
-        
-        {% for r in results %}
-        
-            <h3>{{r}}: {{results[r]}}</h3>
-
-        {% endfor %} -->
-
-        <div class="flex-container">
-            <h3>5 Gallons of Milk</h3>
-            <h3>$5.99</h3>
-            <div class="flex-child">
-                <div class="box">
-                    <input type="checkbox" id="p1", name="p1", value="Kevin">
-                    <span class="check"></span>
-                    <label for="p1">Kevin</label>
-                </div>
-                 <div class="box">
-                    <input type="checkbox" id="p2", name="p2", value="John">
-                    <span class="check"></span>
-                    <label for="p2">John</label>
-                </div>
-                <div class="box">
-                    <input type="checkbox" id="p3", name="p3", value="Peter">
-                    <span class="check"></span>
-                    <label for="p3">Peter</label>
-             
                 </div>
             </div>
-            
-            
-        </div>
+            {% endfor %}
+        </form>
+
+
 
     </body>
 </html>

@@ -4,7 +4,7 @@ import numpy as np
 import re
 
 def runner(filepath):
-    pytesseract.pytesseract.tesseract_cmd = r'C:\Users\kevin\AppData\Local\Tesseract-OCR\tesseract.exe'
+    # pytesseract.pytesseract.tesseract_cmd = r'C:\Users\kevin\AppData\Local\Tesseract-OCR\tesseract.exe'
 
     def finishing(img):
         kernal = np.ones((5,5), np.uint8)
@@ -12,7 +12,6 @@ def runner(filepath):
         img = cv2.dilate(img, kernal, iterations = 1)
         return img
 
-    # img = cv2.imread(filepath)
     img = cv2.imread(filepath)
     edit = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     edit = cv2.threshold(edit, 127, 255, cv2.THRESH_OTSU)[1]
@@ -39,7 +38,7 @@ def runner(filepath):
         words = row.split()
         for i, word in enumerate(words):
             if re.search(pattern2, word):
-                temp = word[:len(word) - 2] #gets only the discounted price
+                temp = word[:len(word) - 2] # gets only the discounted price
                 prices[past] = round(prices[past] - float(temp), 2)
                 break
 
@@ -49,17 +48,17 @@ def runner(filepath):
                         prices[curr] = round(prices[curr] + float(word), 2)
                     else: 
                         prices[curr] = float(word)
-                break #do not want anything after price
+                break # do not want anything after price
 
             if i == 0 and word == 'E':
                 continue
-                #for costco receipts do not want the E tag
+                # for costco receipts do not want the E tag
 
             if word.isnumeric():
                 continue
-                #do not want random numbers
+                # do not want random numbers
 
-            #add all other item descriptors
+            # add all other item descriptors
             curr += word + " "
         past = curr
     return prices
@@ -68,8 +67,8 @@ def runner(filepath):
 #     for item in prices:
 #         print(item + ": " + str(prices[item]))
 
-# def main():
-#     runner()
+def main():
+    print(runner('test_images/costco7.jpg'))
 
-# if __name__ == "__main__":
-#     main()
+if __name__ == "__main__":
+    main()

@@ -12,6 +12,9 @@
   line-height: 1.5;
   font-weight: bold;
 } */
+.name {
+    font-size: 10px;
+}
 
 .box {
   width: 300px;
@@ -21,7 +24,7 @@
   user-select: none;
 }
 .box label {
-  font-size: 26px;
+  font-size: 20px;
   color: #4D4D4D;
   position: absolute;
   z-index: 10;
@@ -72,6 +75,7 @@
 
 
 .flex-container {
+    font-size: 24px;
     display: flex;
     justify-content: space-around;
     align-items: center;

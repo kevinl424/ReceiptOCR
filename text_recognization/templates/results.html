@@ -8,7 +8,7 @@
 {#        <link rel="stylesheet" href="temp.css">#}
     </head>
     <body>
-        <form class="submit-splits" action="{{ url_for('/results/') }}" onsubmit="calcCosts({{ results|length }}, {{ names|length }}, {{ results|tojson }})" method="POST">
+        <form class="submit-splits" action="{{ url_for('/results/') }}" onsubmit="calcCosts({{ results|length }}, {{ names|length }}, {{ results|tojson }}, {{ names|tojson }})" method="POST">
             {%  for r in results %}
             <div class="flex-container">
                 <h3>{{ r }}</h3>
@@ -27,7 +27,9 @@
             {% endfor %}
         </form>
 
+        <div id="breakdown">
 
+        </div>
 
     </body>
 </html>

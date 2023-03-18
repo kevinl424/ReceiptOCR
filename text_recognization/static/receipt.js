@@ -35,7 +35,7 @@ var lockNames = function(event) {
     // test.innerHTML = document.getElementById('p1name').value
 }
 
-var calcCosts = function(itemLen, pLen, json) {
+var calcCosts = function(itemLen, pLen, json, jsonNames) {
     let costs = new Array(pLen).fill(0);
     // holds the total cost per person for product
     const items = JSON.parse(json);
@@ -59,4 +59,13 @@ var calcCosts = function(itemLen, pLen, json) {
             }
         }
     }
+    // write to html
+    const names = JSON.parse(jsonNames);
+    const target = document.getElementById("breakdown")
+    let s = ""
+    let counter = 0
+    for (let key in names) {
+        s += names[key] + ":" + costs[counter] + "  ";
+    }
+    target.innerHTML = s;
 }

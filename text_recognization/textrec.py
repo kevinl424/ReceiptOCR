@@ -4,7 +4,7 @@ import numpy as np
 import re
 
 def runner(filepath):
-    # pytesseract.pytesseract.tesseract_cmd = r'C:\Users\kevin\AppData\Local\Tesseract-OCR\tesseract.exe'
+    pytesseract.pytesseract.tesseract_cmd = r'C:\Users\kevin\AppData\Local\Tesseract-OCR\tesseract.exe'
 
     def finishing(img):
         kernal = np.ones((5,5), np.uint8)

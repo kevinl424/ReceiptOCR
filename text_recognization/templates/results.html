@@ -3,12 +3,23 @@
 <html>
     <head>
         <title>Receipt Results</title>
+        <script type="text/javascript"
+            src="{{url_for('static', filename = 'results.js')}}">
+        </script>
+        <script>
+            var json = "{{results|tojson}}"
+            var jsonNames = "{{names|tojson}}"
+            var itemLen = "{{results|length}}"
+            var pLen = "{{names|length}}"
+        </script>
+
         <!-- for flask app only -->
         <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='style.css') }}">
-{#        <link rel="stylesheet" href="temp.css">#}
+        <!-- <link rel="stylesheet" href="temp.css"> -->
     </head>
     <body>
-        <form class="submit-splits" action="{{ url_for('/results/') }}" onsubmit="calcCosts({{ results|length }}, {{ names|length }}, {{ results|tojson }}, {{ names|tojson }})" method="POST">
+        <form class="submit-splits" 
+            onsubmit="calcCosts()" method="POST">
             {%  for r in results %}
             <div class="flex-container">
                 <h3>{{ r }}</h3>
@@ -25,6 +36,7 @@
                 </div>
             </div>
             {% endfor %}
+            <input type="submit">
         </form>
 
         <div id="breakdown">
